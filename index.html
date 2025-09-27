@@ -1,1 +1,88 @@
-index.html
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Aniversário 🎂</title>
+  <style>
+    body {
+      background: #0f1724;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .balloon {
+      width: 60px;
+      height: 80px;
+      background: red;
+      border-radius: 50% 50% 50% 50%;
+      display: inline-block;
+      margin: 20px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+    .balloon::after {
+      content: "";
+      width: 2px;
+      height: 40px;
+      background: white;
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-30px); }
+      100% { transform: translateY(0); }
+    }
+    .cake {
+      width: 200px;
+      height: 100px;
+      background: pink;
+      margin: 40px auto;
+      border-radius: 10px;
+      position: relative;
+    }
+    .candle {
+      width: 10px;
+      height: 40px;
+      background: white;
+      margin: 0 5px;
+      display: inline-block;
+      position: relative;
+    }
+    .flame {
+      width: 12px;
+      height: 18px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -20px;
+      left: -1px;
+      animation: flicker 1s infinite;
+    }
+    @keyframes flicker {
+      0%   { transform: scale(1); opacity: 1; }
+      50%  { transform: scale(0.8); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Feliz Aniversário! 🎂</h1>
+  <div>
+    <div class="balloon"></div>
+    <div class="balloon" style="background:blue;"></div>
+    <div class="balloon" style="background:yellow;"></div>
+  </div>
+  <div class="cake">
+    <div style="position:absolute; top:-50px; left:50%; transform:translateX(-50%); display:flex;">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+  </div>
+  <p>Faça um pedido e apague as velas! ✨</p>
+</body>
+</html>
