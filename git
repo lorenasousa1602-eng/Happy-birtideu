@@ -1,0 +1,3 @@
+git add .
+git commit -m "Adiciona index.html"
+git push origin main
