@@ -1,150 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Feliz Aniversário 🎂</title>
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#ffd166;
-      --cake-cream:#fff7ea;
-      --cake-base:#f28a8a;
+    body {
+      background: #0f1724;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
     }
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:#f8fafc;background:linear-gradient(180deg,#071427 0%, #0f1724 100%);display:flex;align-items:center;justify-content:center}
-    .stage{width:95vw;max-width:900px;padding:30px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 8px 30px rgba(2,6,23,0.6);position:relative;overflow:hidden}
-    h1{margin:0 0 12px;font-size:28px;text-align:center}
-    p.lead{text-align:center;margin:0 0 20px;opacity:.9}
-
-    /* Balloons */
-    .balloon{position:absolute;width:80px;height:110px;border-radius:60% 60% 55% 55%;background:linear-gradient(180deg, #ff7eb3, #ff65a3);left:10%;top:10%;transform-origin:center bottom;animation:float 6s ease-in-out infinite;box-shadow:0 8px 20px rgba(0,0,0,0.25)}
-    .balloon::after{content:'';position:absolute;left:50%;bottom:-18px;width:2px;height:50px;background:linear-gradient(#222, #111);transform:translateX(-50%)}
-    .balloon.blue{background:linear-gradient(180deg,#8ec5ff,#6ab8ff);left:25%;animation-duration:5s}
-    .balloon.green{background:linear-gradient(180deg,#7ef3b4,#58e39a);left:75%;animation-duration:7s}
-    .balloon.yellow{background:linear-gradient(180deg,#ffe29f,#ffcf6b);left:55%;animation-duration:6.5s}
-    .balloon.pulse{animation:float 4.5s ease-in-out infinite, pulse 2s infinite}
-
-    @keyframes float{
-      0%{transform:translateY(0) rotate(-4deg)}
-      50%{transform:translateY(-18px) rotate(4deg)}
-      100%{transform:translateY(0) rotate(-4deg)}
+    .balloon {
+      width: 60px;
+      height: 80px;
+      background: red;
+      border-radius: 50% 50% 50% 50%;
+      display: inline-block;
+      margin: 20px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
     }
-    @keyframes pulse{
-      0%{transform:scale(1)}
-      50%{transform:scale(1.05)}
-      100%{transform:scale(1)}
+    .balloon::after {
+      content: "";
+      width: 2px;
+      height: 40px;
+      background: white;
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
     }
-
-    /* Cake */
-    .cake-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
-    .cake{width:360px;max-width:90%;background:var(--cake-base);border-radius:18px;padding:18px;box-shadow:0 12px 30px rgba(0,0,0,0.35);position:relative}
-    .frosting{position:absolute;left:18px;right:18px;top:-22px;height:48px;background:var(--cake-cream);border-radius:14px 14px 40px 40px}
-    .plate{height:16px;background:linear-gradient(90deg,#f3f4f6,#e6eef7);border-radius:10px;margin-top:14px}
-
-    /* Candles */
-    .candles{display:flex;gap:14px;justify-content:center;margin-top:6px}
-    .candle{width:12px;height:48px;border-radius:3px;background:linear-gradient(180deg,#ffffff,#ffd1d1);position:relative;box-shadow:inset 0 -6px 8px rgba(0,0,0,0.08)}
-    .candle::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:100%;width:6px;height:18px;background:linear-gradient(180deg,#f8f1c9,#ffd166);border-radius:3px}
-    .flame{position:absolute;left:50%;transform:translateX(-50%);bottom:100%;margin-bottom:6px;width:12px;height:20px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 30% 30%,#fff3b0,#ffd166 40%,#ff8a00 60%);filter:drop-shadow(0 4px 8px rgba(255,150,30,0.2));animation:flicker 1s infinite}
-    @keyframes flicker{
-      0%{transform:translateX(-50%) scale(1)}
-      50%{transform:translateX(-52%) scale(0.95)}
-      100%{transform:translateX(-50%) scale(1)}
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-30px); }
+      100% { transform: translateY(0); }
     }
-
-    /* Message card */
-    .card{margin-top:18px;background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;text-align:center}
-    .name{font-weight:700;margin-bottom:6px}
-
-    /* Confetti dots */
-    .confetti{position:absolute;inset:0;pointer-events:none}
-    .confetti i{position:absolute;width:10px;height:10px;border-radius:2px;background:#ffd166;opacity:.95;transform:translateY(-20px);animation:drop 3.5s linear infinite}
-    @keyframes drop{
-      0%{transform:translateY(-10vh) translateX(0) rotate(0);opacity:1}
-      100%{transform:translateY(120vh) translateX(80px) rotate(720deg);opacity:0}
+    .cake {
+      width: 200px;
+      height: 100px;
+      background: pink;
+      margin: 40px auto;
+      border-radius: 10px;
+      position: relative;
     }
-
-    /* footer */
-    .note{font-size:13px;opacity:.8;margin-top:10px;text-align:center}
+    .candle {
+      width: 10px;
+      height: 40px;
+      background: white;
+      margin: 0 5px;
+      display: inline-block;
+      position: relative;
+    }
+    .flame {
+      width: 12px;
+      height: 18px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -20px;
+      left: -1px;
+      animation: flicker 1s infinite;
+    }
+    @keyframes flicker {
+      0%   { transform: scale(1); opacity: 1; }
+      50%  { transform: scale(0.8); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
-  <div class="stage" role="main">
-    <div class="balloon" style="left:6%;top:6%"></div>
-    <div class="balloon blue" style="left:18%;top:18%"></div>
-    <div class="balloon green" style="left:78%;top:8%"></div>
-    <div class="balloon yellow" style="left:64%;top:24%"></div>
-
-    <h1 id="title">Feliz Aniversário!</h1>
-    <p class="lead">Um presente digital cheio de carinho — abre, apaga as velas e faz um pedido! 🎉</p>
-
-    <div class="cake-wrap">
-      <div class="cake" aria-hidden>
-        <div class="frosting"></div>
-        <div style="height:120px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px">
-          <div class="candles" id="candles">
-            <div class="candle"><div class="flame"></div></div>
-            <div class="candle"><div class="flame"></div></div>
-            <div class="candle"><div class="flame"></div></div>
-            <div class="candle"><div class="flame"></div></div>
-            <div class="candle"><div class="flame"></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="plate" style="width:70%"></div>
-
-      <div class="card" id="card">
-        <div class="name" id="namePlace">Para: a minha amiga da universidade</div>
-        <div id="message">Desde que nos conhecemos na universidade, entre estudos e o amor pelo Real Madrid, criámos uma amizade incrível. Parabéns e muitas felicidades!</div>
-        <button id="blowBtn" style="margin-top:12px;padding:8px 14px;border-radius:10px;border:0;cursor:pointer;background:#1f6feb;color:white">Apagar as velas</button>
-      </div>
-      <div class="note">Podes editar o texto neste ficheiro para personalizar com o nome dela.</div>
-    </div>
-
-    <div class="confetti" id="confetti"></div>
+  <h1>🎉 Feliz Aniversário! 🎂</h1>
+  <div>
+    <div class="balloon"></div>
+    <div class="balloon" style="background:blue;"></div>
+    <div class="balloon" style="background:yellow;"></div>
   </div>
-
-  <script>
-    // Simple personalization
-    const name = '';// coloca aqui o nome, ex: 'Georgia'
-    if(name){
-      document.getElementById('namePlace').textContent = 'Para: ' + name;
-      document.getElementById('title').textContent = 'Feliz Aniversário, ' + name + '!';
-    }
-
-    // Blow out candles
-    const blowBtn = document.getElementById('blowBtn');
-    let blown = false;
-    blowBtn.addEventListener('click', ()=>{
-      if(blown) return;
-      blown = true;
-      // remove flames
-      document.querySelectorAll('.flame').forEach(f => {
-        f.style.transition = 'opacity .9s ease';
-        f.style.opacity = '0';
-      });
-      blowBtn.textContent = 'Pedido feito! 🎉';
-      spawnConfetti();
-    });
-
-    // Confetti generator (small)
-    function spawnConfetti(){
-      const wrap = document.getElementById('confetti');
-      const colors = ['#ffd166','#ff7eb3','#8ec5ff','#7ef3b4','#a78bfa'];
-      for(let i=0;i<28;i++){
-        const el = document.createElement('i');
-        el.style.left = Math.random()*100 + '%';
-        el.style.top = (Math.random()*30 - 10) + '%';
-        el.style.width = (6+Math.random()*10)+'px';
-        el.style.height = el.style.width;
-        el.style.background = colors[Math.floor(Math.random()*colors.length)];
-        el.style.animationDuration = (2.5 + Math.random()*2)+'s';
-        el.style.transform = 'rotate('+ (Math.random()*360) +'deg)';
-        wrap.appendChild(el);
-        setTimeout(()=>el.remove(), 4500);
-      }
-    }
-  </script>
+  <div class="cake">
+    <div style="position:absolute; top:-50px; left:50%; transform:translateX(-50%); display:flex;">
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+    </div>
+  </div>
+  <p>Faça um pedido e apague as velas! ✨</p>
 </body>
 </html>
